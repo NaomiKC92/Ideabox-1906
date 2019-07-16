@@ -1,5 +1,5 @@
 * {
-  border: solid red 1px;
+  /* border: solid red 1px; */
   box-sizing: border-box;
 }
 
@@ -20,6 +20,7 @@ body {
 
 
 nav {
+  background-color: #1F1F3D;
   grid-area: nav;
 }
 
@@ -33,13 +34,73 @@ main {
 }
 
 .top-section {
+  background-color: #A9AAD2;
   grid-area: top-section;
 }
 
 .bottom-section {
+  background-color: #EAEAF4;
   grid-area: bottom-section;
 }
 
+.card{
+  border: 2px solid #6E646B;
+  display: flex;
+  flex-direction: column;
+  width: 30vh;
+  height: 30vh;
+}
+
+.card__header{
+  background-color: #1F1F3D;
+  width: 100%;
+  height: 4vh;
+}
+
+.card__img--star {
+  float: left;
+}
+.card__img--close {
+  float: right;
+}
+
+.card__body {
+  height: 22vh;
+  width: 100%;
+}
+
+.card__ideas {
+  font-size: 14 px;
+  font-weight: 600;
+}
+
+.card__info {
+  font-size: 14px;
+
+}
+
+.card__footer {
+  background-color: #5356A4;
+  height: 4vh;
+  text-align: center;
+}
+
+.card__img--upvote {
+  float: left;
+}
+
+.card__quality {
+  color: white;
+  display: inline;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card__img--downvote {
+  float: right;
+}
+
 img {
-  height: 10px;
+  height: 25px;
+  border: 2px solid green;
 }
