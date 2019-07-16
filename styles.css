@@ -1,5 +1,6 @@
 * {
 	border: 1px solid black;
+	font-family: open sans;
 }
 
 *,
@@ -30,7 +31,7 @@ nav {
 
 
 
-.main__idea--section {
+.top-section {
 	background-color: #A9AAD2;
 	height: 400px;
 	width: 100%;
@@ -41,27 +42,76 @@ nav {
 	margin-left: 150px;
 }
 
-.idea__form--title {
+.form-container {
+	height: 360px;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	align-items: center;
+
+}
+
+.title {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	width: 40%;
+	width: 90%;
 	height: 20%;
 	margin: 0 auto;
 
 }
 
-.idea__form--label{
-	margin-right: 300px;
-
+.title__label,
+.body__label {
+	margin-right: 560px;
+	margin-bottom: 10px;
+	color: #1f1f3d;
+	font-weight: bold;
+	font-size: 18px;
 }
 
-.idea__form--title-input {
+.title__input {
 	height: 35px;
-	width: 98%;
+	width: 100%;
 }
 
-.idea__form--body {
+.body {
+	height: 140px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+
+}
+
+.body__input {
+	height: 120px;
+	width: 100%;
+}
+
+.save {
+	background-color: #1F1F3D;
+	color: white;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	height: 50px;
+	text-align: center;
+
+}
+
+.search-box {
+	width: 90%;
+	height: 50px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+}
+
+/*.idea__form--body {
 	height: 100px;
 
 }
@@ -81,5 +131,4 @@ nav {
 	width: 500px;
 	height: 50px;
 	align-items: center;
-}
-
+}*/
