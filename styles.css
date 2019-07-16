@@ -1,0 +1,45 @@
+* {
+  border: solid red 1px;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "nav main main main" "nav main main main"
+   "nav main main main";
+}
+
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "top-section" "top-section" "bottom-section"
+  "bottom-section" "bottom-section";
+}
+
+.top-section {
+  grid-area: top-section;
+}
+
+.bottom-section {
+  grid-area: bottom-section;
+}
+
+img {
+  height: 10px;
+}
