@@ -3,56 +3,56 @@
 <head>
 </head>
 <body>
-	<nav>
-		<header>
-			<h1> IdeaBox Redux</h1>
-		</header>
-		<section>
-			<h3>Filter Starred Ideas</h3>
-			<button>Show Starred Ideas</button>
-		</section>
-		<section>
-			<h3>Filter by Quality</h3>
-			<ul>
-				<li>Swill</li>
-				<li>Plausible</li>
-				<li>Genius</li>
-			</ul>
-			<div>
-				<label>New Quality</label>
-				<input>
-				<button>Add New Quality</button>
-			</div>
-		</section>
-	</nav>
-	<section class= "top">
-		<div>
-			<div>
-				<label>Title</label>
-				<input>
-			</div>
-			<div>
-				<label>Body</label>
-				<input>
-			</div>
-			<button>Save</button>
-			<input>
-			</div>
-	</section>
-	<section class = "bottom">
-		<article class="card">
-			<header>
-				<img star>
-				<img x>
+	<main>
+		<nav>
+			<header class="main__nav--header">
+				<h1> IdeaBox Redux</h1>
 			</header>
-			<h2>Idea Title</h2>
-			<p>Some idea info</p>
-			<footer>
-				<img arrow up>
-				<p> Quality: Swill</p>
-				<img arrow down>
-			</footer>
-		</article>
-	</section>
+			<section class="main__nav--starred">
+				<h3>Filter Starred Ideas</h3>
+				<button class="nav__btn--starred-ideas">Show Starred Ideas</button>
+			</section>
+			<section class="main__nav--quality">
+				<h3>Filter by Quality</h3>
+				<ul class="nav__quality--list">
+					<li>Swill</li>
+					<li>Plausible</li>
+					<li>Genius</li>
+				</ul>
+				<form class="nav__form--new-quality">
+					<label>New Quality</label>
+					<input type="text" class="nav__form--input">
+					<button class="nav__form--btn">Add New Quality</button>
+				</form>
+			</section>
+		</nav>
+		<section class="main__idea--section">
+			<form class="idea__form--title">
+				<label class="idea__form--label">Title</label>
+				<input type="text" class="idea__form--title-input">
+			</form>
+			<form class="idea__form--body">
+				<label class="idea__form--label">Body</label>
+				<input type="text" class="idea__form--body-input">
+			</form>
+			<button class="idea__form--btn">Save</button>
+			<input type="text" class="idea__search--input">
+		</section>
+		<section class="main__bottom--cards">
+			<article class="main__article--card">
+				<header class="article__card--header">
+					<img class="card__img--star" star>
+					<img class="card__img--delete" x>
+				</header>
+				<h2 class="card__idea--title">Idea Title</h2>
+				<p class="card__idea--body">Some idea info</p>
+				<footer class="article__card--footer">
+					<img class="card__footer--upvote" arrow up>
+					<p class="card__footer--quality"> Quality: Swill</p>
+					<img class="card__footer--downvote" arrow down>
+				</footer>
+			</article>
+		</section>
+	</main>
 </body>
 </html>
