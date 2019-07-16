@@ -63,7 +63,7 @@ nav {
 
 .title__label,
 .body__label {
-	margin-right: 560px;
+	margin-right: px;
 	margin-bottom: 10px;
 	color: #1f1f3d;
 	font-weight: bold;
@@ -97,7 +97,7 @@ nav {
 	flex-direction: column;
 	margin: auto;
 	height: 50px;
-	text-align: center;
+	align-items: center;
 
 }
 
