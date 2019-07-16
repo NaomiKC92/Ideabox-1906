@@ -53,6 +53,7 @@ nav {
 	width: 90%;
 	height: 20%;
 	margin: 0 auto;
+	margin-bottom: 10px;
 
 }
 
@@ -68,6 +69,7 @@ nav {
 .title__input {
 	height: 35px;
 	width: 100%;
+	border: 2px solid #353567;
 }
 
 .body {
@@ -82,17 +84,21 @@ nav {
 .body__input {
 	height: 120px;
 	width: 100%;
+	border: 2px solid #353567;
 }
 
 .save {
 	background-color: #1F1F3D;
-	color: white;
+	color: #E9E9F3;
+	font-weight: bold;
 	width: 90%;
 	display: flex;
 	flex-direction: column;
 	margin: auto;
 	height: 50px;
 	align-items: center;
+	justify-content: space-around;
+	font-size: 16px;
 
 }
 
@@ -103,6 +109,7 @@ nav {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	border: 2px solid #353567;
 
 }
 
