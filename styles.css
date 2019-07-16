@@ -26,11 +26,6 @@ nav {
 
 }
 
-
-
-
-
-
 .top-section {
 	background-color: #A9AAD2;
 	height: 400px;
@@ -46,7 +41,7 @@ nav {
 	height: 360px;
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 40%;
 	align-items: center;
 
 }
@@ -63,7 +58,7 @@ nav {
 
 .title__label,
 .body__label {
-	margin-right: px;
+	margin-right: 450px;
 	margin-bottom: 10px;
 	color: #1f1f3d;
 	font-weight: bold;
@@ -111,24 +106,3 @@ nav {
 
 }
 
-/*.idea__form--body {
-	height: 100px;
-
-}
-
-.idea__form--body--input {
-	height: 150px;
-	width: 50%;
-}
-
-.idea__form--btn {
-	background-color: #1F1F3D;
-	font-color: white;
-	width: 150px;
-}
-
-.idea__search--input {
-	width: 500px;
-	height: 50px;
-	align-items: center;
-}*/
