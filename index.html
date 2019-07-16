@@ -35,8 +35,8 @@
 			</section>
 		</nav>
 		<main>
-			<section class="top-section">
-				<article class="form-container">
+			<section class="main__top">
+				<article class="top__form--container">
 					<form class="title">
 						<label class="title__label">Title</label>
 						<input type="text" class="title__input">
@@ -45,31 +45,32 @@
 						<label class="body__label">Body</label>
 						<input type="text" class="body__input">
 					</form>
-					<button class="save" type="save">Save</button>
-					<input type="text" class="search-box" placeholder= "Enter Search Term Here">
+					<button class="top__input--btn" type="save">Save</button>
+					<input type="text" class="form__search--input" placeholder= "Enter Search Term Here">
 				</article>
 			</section>
-			<section class="bottom-section">
-				<div class="card-container">
+			<section class="main__bottom">
+				<!-- <div class="bottom__card--container"></div> -->
 					<article class="card">
-						<div class="card__header">
+						<section class="card__header">
 							<img src="images/star.svg" class="card__img card__img--star">
 							<img src="images/delete.svg" class="card__img card__img--close">
-						</div>
-						<div class="card__body">
+						</section>
+						<section class="card__body">
 							<h2 class="card__ideas">Idea Title</h2>
 							<p class="card__info">Some idea info</p>
-						</div>
-						<div class="card__footer">
+						</section>
+						<section class="card__footer">
 							<img src="images/upvote.svg" class="card__img card__img--upvote"
 							arrow up>
 							<p class="card__quality"> Quality: Swill</p>
 							<img src="images/downvote.svg"
 							class="card__img card__img--downvote" arrow down>
-						</div>
+						</section>
 					</article>
-				</div>
+				<!-- </div> -->
 			</section>
 		</main>
+
 	</body>
 </html>
