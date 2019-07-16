@@ -1,58 +1,75 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-	<main>
-		<nav>
-			<header class="main__nav--header">
-				<h1> IdeaBox Redux</h1>
+	<head>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ideabox Redux</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link
+		href=
+		"https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+		rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	</head>
+	<body>
+		<nav class="nav">
+			<header class="nav__header">
+				<h1>IdeaBox Redux</h1>
 			</header>
-			<section class="main__nav--starred">
+			<section class="nav__starred">
 				<h3>Filter Starred Ideas</h3>
-				<button class="nav__btn--starred-ideas">Show Starred Ideas</button>
+				<button class="nav__btn nav__btn--starred">Show Starred Ideas</button>
 			</section>
-			<section class="main__nav--quality">
+			<section class="nav__quality">
 				<h3>Filter by Quality</h3>
-				<ul class="nav__quality--list">
+				<ul class="nav__ranks">
 					<li>Swill</li>
 					<li>Plausible</li>
 					<li>Genius</li>
 				</ul>
-				<form class="nav__form--new-quality">
+				<form class="nav__form">
 					<label>New Quality</label>
-					<input type="text" class="nav__form--input">
-					<button class="nav__form--btn">Add New Quality</button>
+					<input type="text" class="nav__input">
+					<button class="nav__btn nav__btn--quality">Add New Quality</button>
 				</form>
 			</section>
 		</nav>
-		<section class="main__idea--section">
-			<form class="idea__form--title">
-				<label class="idea__form--label">Title</label>
-				<input type="text" class="idea__form--title-input">
-			</form>
-			<form class="idea__form--body">
-				<label class="idea__form--label">Body</label>
-				<input type="text" class="idea__form--body-input">
-			</form>
-			<button class="idea__form--btn">Save</button>
-			<input type="text" class="idea__search--input">
-		</section>
-		<section class="main__bottom--cards">
-			<article class="main__article--card">
-				<header class="article__card--header">
-					<img class="card__img--star" star>
-					<img class="card__img--delete" x>
-				</header>
-				<h2 class="card__idea--title">Idea Title</h2>
-				<p class="card__idea--body">Some idea info</p>
-				<footer class="article__card--footer">
-					<img class="card__footer--upvote" arrow up>
-					<p class="card__footer--quality"> Quality: Swill</p>
-					<img class="card__footer--downvote" arrow down>
-				</footer>
-			</article>
-		</section>
-	</main>
-</body>
+		<main>
+			<section class="top-section">
+				<article class="form-container">
+					<form class="title">
+						<label class="title__label">Title</label>
+						<input type="text" class="title__input">
+					</form>
+					<form class="body">
+						<label class="body__label">Body</label>
+						<input type="text" class="body__input">
+					</form>
+					<button class="save">Save</button>
+					<input type="text" class="search-box">
+				</article>
+			</section>
+			<section class="bottom-section">
+				<div class="card-container">
+					<article class="card">
+						<div class="card__header">
+							<img src="images/star.svg" class="card__img card__img--star" star>
+							<img src="images/delete.svg" class="card__img card__img--close" X>
+						</div>
+						<div class="card__body">
+							<h2 class="card__ideas">Idea Title</h2>
+							<p class="card__info">Some idea info</p>
+						</div>
+						<div class="card__footer">
+							<img src="images/upvote.svg" class="card__img card__img--upvote"
+							arrow up>
+							<p class="card__quality"> Quality: Swill</p>
+							<img src="images/downvote.svg"
+							class="card__img card__img--downvote" arrow down>
+						</div>
+					</article>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
