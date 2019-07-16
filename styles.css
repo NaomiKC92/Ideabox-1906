@@ -102,6 +102,10 @@ nav {
 
 }
 
+.save:hover {
+	background-color: #D14119;
+}
+
 .search-box {
 	width: 90%;
 	height: 50px;
