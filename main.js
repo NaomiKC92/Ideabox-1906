@@ -19,7 +19,7 @@ saveButton.addEventListener('click', function() {
 
 })
 
-
+// sets save button to disabled if a text field is empty
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
 
@@ -28,10 +28,26 @@ function enableSave() {
         saveButton.disabled = false;
     }
 }
+
+function clearFields () {
+  if (saveButton.disabled = true) {
+    titleInput.value = "";
+    bodyInput.value = "";
+  }
+}
+
 function createIdea() {
 	var idea = new Idea(titleInput.value, bodyInput.value);
 	ideas.push(idea);
+  idea.saveToStorage(ideas);
 	appendCard(idea);
+  clearFields();
+  console.log(idea);
+}
+
+function persistIdeas() {
+  var freshIdeas = [];
+  var
 }
 
 function appendCard(object) {
@@ -53,12 +69,3 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">
 						</section>
 					</article>`)
 }
-
-
-
-
-
-
-
-
-
