@@ -13,6 +13,8 @@ var ideas = []
 
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
+window.addEventListener('load', persistIdeas);
+window.addEventListener('load', reappendCard);
 saveButton.addEventListener('click', function() {
     console.log("click!");
     createIdea();
@@ -22,8 +24,7 @@ saveButton.addEventListener('click', function() {
 // sets save button to disabled if a text field is empty
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
-
-        saveButton.disabled = true;
+      saveButton.disabled = true;
     } else {
         saveButton.disabled = false;
     }
@@ -37,18 +38,29 @@ function clearFields () {
 }
 
 function createIdea() {
-	var idea = new Idea(titleInput.value, bodyInput.value);
+	var idea = new Idea(Date.now(), titleInput.value, bodyInput.value, 0, false);
 	ideas.push(idea);
   idea.saveToStorage(ideas);
 	appendCard(idea);
   clearFields();
-  console.log(idea);
 }
-
+// ideas dont disappear on refresh
 function persistIdeas() {
   var freshIdeas = [];
-  var
+  var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+  parseIdeas.map(function(idea) {
+      var freshIdea = new Idea (idea.id, idea.title, idea.body, idea.quality,
+        idea.star)
+        freshIdeas.push(freshIdea);
+  });
+  ideas = freshIdeas;
 }
+
+function reappendCard() {
+  for (var i = 0; i < ideas.length ; i++) {
+    appendCard(ideas[i]);
+    }
+  }
 
 function appendCard(object) {
 bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">

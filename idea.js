@@ -10,13 +10,15 @@ class Idea {
   saveToStorage(i) {
   localStorage.setItem('ideas', JSON.stringify(i));
   }
-// deleteFromStorage() {
+// not working yet {
   deleteFromStorage(i) {
-    localStorage.removeItem('ideas', i)
+  localStorage.removeItem('ideas', i);
   }
 //
 // }
+  updateIdea() {
 
+  }
 // updateIdea() {
 //
 // }
