@@ -7,32 +7,60 @@ var ideas = []
 //named function for appending card to go on event listener
     //use afterbegin
 
-//savebutton event listener
+//savebutton event listener!!!
     //titleInput to be interpolated to card h2
     //bodyInput to be interpolated to card body/p class card__ideas
 
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
+window.addEventListener('load', persistIdeas);
+window.addEventListener('load', reappendCard);
 saveButton.addEventListener('click', function() {
     console.log("click!");
     createIdea();
 
 })
 
-
+// sets save button to disabled if a text field is empty
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
-
-        saveButton.disabled = true;
+      saveButton.disabled = true;
     } else {
         saveButton.disabled = false;
     }
 }
-function createIdea() {
-	var idea = new Idea(titleInput.value, bodyInput.value);
-	ideas.push(idea);
-	appendCard(idea);
+
+function clearFields () {
+  if (saveButton.disabled = true) {
+    titleInput.value = "";
+    bodyInput.value = "";
+  }
 }
+
+function createIdea() {
+	var idea = new Idea(Date.now(), titleInput.value, bodyInput.value, 0, false);
+	ideas.push(idea);
+  idea.saveToStorage(ideas);
+	appendCard(idea);
+  clearFields();
+}
+// ideas dont disappear on refresh
+function persistIdeas() {
+  var freshIdeas = [];
+  var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+  parseIdeas.map(function(idea) {
+      var freshIdea = new Idea (idea.id, idea.title, idea.body, idea.quality,
+        idea.star)
+        freshIdeas.push(freshIdea);
+  });
+  ideas = freshIdeas;
+}
+
+function reappendCard() {
+  for (var i = 0; i < ideas.length ; i++) {
+    appendCard(ideas[i]);
+    }
+  }
 
 function appendCard(object) {
 bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">
@@ -53,12 +81,3 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">
 						</section>
 					</article>`)
 }
-
-
-
-
-
-
-
-
-

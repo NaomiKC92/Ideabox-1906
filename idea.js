@@ -6,6 +6,24 @@ class Idea {
       this.quality = "Swill";
       this.star = false;
   }
+// methods we MUST add
+  saveToStorage(i) {
+  localStorage.setItem('ideas', JSON.stringify(i));
+  }
+// not working yet!!! {
+  deleteFromStorage(i) {
+  localStorage.removeItem('ideas', i);
+  }
+//
+// }
+  updateIdea() {
 
-  
+  }
+// updateIdea() {
+//
+// }
+
+// updateQuality() {
+//
+// }
 }
