@@ -10,7 +10,7 @@ class Idea {
   saveToStorage(i) {
   localStorage.setItem('ideas', JSON.stringify(i));
   }
-// not working yet {
+// not working yet!!! {
   deleteFromStorage(i) {
   localStorage.removeItem('ideas', i);
   }
