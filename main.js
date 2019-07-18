@@ -6,6 +6,7 @@ var ideas = []
 
 persistIdeas();
 reappendCard();
+maximumDelete();
 
 
 //named function for appending card to go on event listener
@@ -36,10 +37,9 @@ function deleteCard(event) {
 }
 
 function maximumDelete() {
-	//create empty array
-	//method (parsed items)
-	//once objects are parsed, push into empty array
-	//
+	var tempIdeasArray = localStorage.getItem("ideas", JSON.parse(ideas));
+	var objectIndex = findId(event);
+	console.log(objectIndex);
 
 }
 // bottomSection.addEventListener("keypress", updateIdea) {
@@ -95,12 +95,14 @@ function persistIdeas() {
 
 function findId(event) {
 	console.log("HI");
-	var foundId = parseInt(event.target.closest('.card__header').id);
+	var foundId = parseInt(event.target.closest('.card').id);
 	console.log(foundId);
-	returnIndex(foundId)
+	var i = retrieveIndex(foundId);
+	console.log(ideas[i])
+	return ideas[i];
 }
 
-function returnIndex(target) {
+function retrieveIndex(target) {
 	for (var i = 0; i < ideas.length; i++) {
 		if (target === ideas[i].id) {
 			console.log(ideas[i])
@@ -118,10 +120,10 @@ function reappendCard() {
   }
 
 function appendCard(idea) {
-bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">
-						<section class="card__header" id=${idea.id}>
+bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" onclick="findId(event)" id=${idea.id}>
+						<section class="card__header">
 							<img src="images/star.svg" class="card__img card__img--star">
-							<img src="images/delete.svg"  class="card__img card__img--close" onclick="findId(event)">
+							<img src="images/delete.svg"  class="card__img card__img--close" >
 						</section>
 						<section class="card__body">
 							<h2 class="card__ideas" contenteditable="true">${idea.title}</h2>
