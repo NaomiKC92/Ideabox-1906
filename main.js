@@ -4,6 +4,7 @@ var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
 var ideas = []
 
+
 //named function for appending card to go on event listener
     //use afterbegin
 
@@ -15,11 +16,31 @@ titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
 window.addEventListener('load', persistIdeas);
 window.addEventListener('load', reappendCard);
-saveButton.addEventListener('click', function() {
+saveButton.addEventListener("click", function() {
     console.log("click!");
     createIdea();
 
 })
+
+bottomSection.addEventListener("click", deleteCard);
+function deleteCard(event) {
+	if (event.target.classList[1] === "card__img--close") {
+		var card = event.target.closest(".card")
+		card.remove();
+	}
+	retrieveCard();
+	console.log(ideas);
+}
+
+function retrieveCard() {
+	var parsedIdeas = JSON.parse(localStorage.getItem("ideas"));
+	parsedIdeas.map(function(idea) {
+		//select individual idea
+	})
+	var parsedArray = [];
+
+	var cardId = event.target.closest(".card").getAttribute(idea.id);
+}
 
 // sets save button to disabled if a text field is empty
 function enableSave() {
@@ -81,3 +102,5 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card">
 						</section>
 					</article>`)
 }
+
+
