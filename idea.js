@@ -20,6 +20,7 @@ class Idea {
 // }
 	deleteFromStorage(id) {
 		localStorage.getItem("ideas", JSON.parse(ideas));
+    //
 		
 	}
 
