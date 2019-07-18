@@ -83,33 +83,32 @@ function persistIdeas() {
 	// debugger;
   var freshIdeas = [];
   var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
-   parseIdeas.forEach(function(idea) {
+  parseIdeas.forEach(function(idea) {
       var freshIdea = new Idea (idea.title, idea.body, idea.id)
         freshIdeas.push(freshIdea);
   });
-   console.log('fresh ideas array', freshIdeas);
+   // console.log('fresh ideas array', freshIdeas);
   ideas = freshIdeas;
-  console.log('global array', ideas);
+  // console.log('global array', ideas);
 }
 
 
 function findId(event) {
-	var getId = event.target.parentNode.id;
-	console.log("HI", getId);
-	return getId;
+	console.log("HI");
+	var foundId = parseInt(event.target.closest('.card__header').id);
+	console.log(foundId);
+	returnIndex(foundId)
 }
 
-// function returnIndex(array) {
-// 	var arrayIndex 
-// 	for (var i = 0; i < ideas.length; i++) {
-// 		if (findId(event) === ideas.idea.id[i]) {
-// 			console.log("in the index")
-// 			return indexOf(i);
-// 		}
-// 		arrayIndex = indexOf(i);
+function returnIndex(target) {
+	for (var i = 0; i < ideas.length; i++) {
+		if (target === ideas[i].id) {
+			console.log(ideas[i])
+		}
+		// arrayIndex = indexOf(i);
 	
-// 	}
-// }
+	}
+}
 
 
 function reappendCard() {
