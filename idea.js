@@ -8,12 +8,12 @@ class Idea {
   }
 // methods we MUST add
   saveToStorage(i) {
-  localStorage.setItem('ideas', JSON.stringify(i));
+  localStorage.setItem("ideas", JSON.stringify(i));
   }
 // not working yet!!! {
-  deleteFromStorage(i) {
-  localStorage.removeItem('ideas', i);
-  }
+  // deleteFromStorage(i) {
+  // localStorage.removeItem('ideas', i);
+  // }
 //
 // }
   updateIdea() {
@@ -26,4 +26,8 @@ class Idea {
 // updateQuality() {
 //
 // }
-}
+	deleteFromStorage(i) {
+		localStorage.removeItem("ideas");
+	}
+} 
+// maybe this.id instead of ideas???
