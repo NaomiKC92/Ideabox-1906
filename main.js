@@ -2,19 +2,10 @@ var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
 var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
+
 var ideas = []
-
 persistIdeas();
-reappendCard();
-maximumDelete();
-
-
-//named function for appending card to go on event listener
-    //use afterbegin
-
-//savebutton event listener!!!
-    //titleInput to be interpolated to card h2
-    //bodyInput to be interpolated to card body/p class card__ideas
+appendCards();
 
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
@@ -30,23 +21,9 @@ function deleteCard(event) {
 		var card = event.target.closest(".card")
 		card.remove();
 	}
-	// retrieveCard();
-	// deleteFromStorage(event);
-	// returnIndex(card);
-	console.log(ideas);
+	console.log('global array', ideas);
 }
 
-function maximumDelete() {
-	var tempIdeasArray = localStorage.getItem("ideas", JSON.parse(ideas));
-	var objectIndex = findId(event);
-	console.log(objectIndex);
-
-}
-// bottomSection.addEventListener("keypress", updateIdea) {
-// 	var key = event.which || event.keyCode;
-//     if (key === 13) { 
-//       //save update
-// }
 
 function retrieveCard() {
 	var parsedIdeas = JSON.parse(localStorage.getItem("ideas"));
@@ -54,7 +31,6 @@ function retrieveCard() {
 	var cardId = event.target.closest(".card").getAttribute(idea.id);
 }
 
-// sets save button to disabled if a text field is empty
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
       saveButton.disabled = true;
@@ -78,42 +54,39 @@ function createIdea() {
 	appendCard(idea);
   	clearFields();
 }
-// ideas dont disappear on refresh
+
+function updateLocalStorage() {
+	ideas[0].saveToStorage(ideas);
+
+}
+
 function persistIdeas() {
-	// debugger;
   var freshIdeas = [];
   var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+  if (parseIdeas) {
   parseIdeas.forEach(function(idea) {
       var freshIdea = new Idea (idea.title, idea.body, idea.id)
         freshIdeas.push(freshIdea);
-  });
-   // console.log('fresh ideas array', freshIdeas);
+     })
+  };
   ideas = freshIdeas;
-  // console.log('global array', ideas);
 }
 
 
 function findId(event) {
-	console.log("HI");
-	var foundId = parseInt(event.target.closest('.card').id);
-	console.log(foundId);
-	var i = retrieveIndex(foundId);
-	console.log(ideas[i])
-	return ideas[i];
+    var foundId = parseInt(event.target.closest('.card').id);
+    deleteMatchingIdea(foundId);
 }
 
-function retrieveIndex(target) {
-	for (var i = 0; i < ideas.length; i++) {
-		if (target === ideas[i].id) {
-			console.log(ideas[i])
-		}
-		// arrayIndex = indexOf(i);
-	
-	}
+function deleteMatchingIdea(targetID) {
+    var updatedArray = ideas.filter( idea => {
+        return idea.id !== targetID;
+    })
+    ideas = updatedArray;
+    updateLocalStorage();
 }
 
-
-function reappendCard() {
+function appendCards() {
   for (var i = 0; i < ideas.length ; i++) {
     appendCard(ideas[i]);
     }
