@@ -20,7 +20,6 @@ saveButton.addEventListener("click", function() {
     console.log("click!");
     createIdeaHandler();
 })
-bottomSection.addEventListener("click", deleteCard);
 
 
 // functions
@@ -39,7 +38,7 @@ function createIdeaHandler(event) {
 
 function mainEventHandler(event) {
   findIndex(event);
-  // deleteCard(event);
+  deleteCard(event);
 }
 
 // function retrieveCard() {
@@ -136,24 +135,6 @@ function deleteCard(event) {
     ideas[cardIndex].deleteFromStorage(cardIndex);
   }
 }
-// function findId(event) {
-//   var ideaCard = event.target.closest('.card');
-//   if (ideas.length > 0 && ideaCard) {
-//     console.log(parseInt(event.target.closest('.card').dataset.id));
-//     return parseInt(event.target.closest('.card').dataset.id);
-//   }
-// }
-
-
-
-// function deleteCard(event) {
-// 	if (event.target.classList[1] === "card__img--close") {
-// 		var card = event.target.closest(".card")
-// 		card.remove();
-// 	}
-// 	console.log('global array', ideas);
-// }
-
 
 
 function updateLocalStorage() {
