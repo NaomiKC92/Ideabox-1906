@@ -11,18 +11,21 @@ class Idea {
   	localStorage.setItem("ideas", JSON.stringify(ideas));
   }
 
+  deleteFromStorage(index) {
+     ideas.splice(index, 1);
+     this.saveToStorage(ideas);
+   }
+
 // updateIdea() {
 //
 // }
 
-// updateQuality() {git 
+// updateQuality() {git
 //
 // }
-	deleteFromStorage(id) {
-		localStorage.getItem("ideas", JSON.parse(ideas));
-    //
-		
-	}
+	// deleteFromStorage(id) {
+	// 	localStorage.getItem("ideas", JSON.parse(ideas));
+	// }
 
 
 // 	var targetedId = event.target.parentNode.id;
@@ -30,6 +33,6 @@ class Idea {
 // 		return idea.id !== parseInt(targetedId);
 
 // 	}
-// } 
+// }
 // maybe this.id instead of ideas???
 }

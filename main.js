@@ -1,63 +1,59 @@
+
+// global vars
+
+var main = document.querySelector('.main');
 var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
 var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
+var ideas = [];
 
-var ideas = []
+// Load functions and listeners
+
 persistIdeas();
 appendCards();
 
+main.addEventListener('click', mainEventHandler)
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", function() {
     console.log("click!");
-    createIdea();
+    createIdeaHandler();
 })
-
 bottomSection.addEventListener("click", deleteCard);
 
-function deleteCard(event) {
-	if (event.target.classList[1] === "card__img--close") {
-		var card = event.target.closest(".card")
-		card.remove();
-	}
-	console.log('global array', ideas);
+
+// functions
+
+function createIdeaHandler(event) {
+  // e.preventDefault();
+  instantiateIdea();
+	// var ideaId = Date.now()
+	// var idea = new Idea(titleInput.value, bodyInput.value, ideaId);
+	// ideas.push(idea);
+  // idea.saveToStorage(ideas);
+  // persistIdeas();
+	// appendCard(idea);
+  clearFields();
 }
 
-
-function retrieveCard() {
-	var parsedIdeas = JSON.parse(localStorage.getItem("ideas"));
-	var parsedArray = [];
-	var cardId = event.target.closest(".card").getAttribute(idea.id);
+function mainEventHandler(event) {
+  findIndex(event);
+  // deleteCard(event);
 }
 
-function enableSave() {
-    if (titleInput.value === '' || bodyInput.value === ''){
-      saveButton.disabled = true;
-    } else {
-        saveButton.disabled = false;
-    }
-}
+// function retrieveCard() {
+// 	var parsedIdeas = JSON.parse(localStorage.getItem("ideas"));
+// 	var parsedArray = [];
+// 	var cardId = event.target.closest(".card").getAttribute(idea.id);
+// }
 
-function clearFields () {
-  if (saveButton.disabled = true) {
-    titleInput.value = "";
-    bodyInput.value = "";
-  }
-}
-
-function createIdea() {
-	var ideaId = Date.now()
-	var idea = new Idea(titleInput.value, bodyInput.value, ideaId );
-	ideas.push(idea);
-  	idea.saveToStorage(ideas);
+function instantiateIdea() {
+  var ideaId = Date.now()
+  var idea = new Idea(titleInput.value, bodyInput.value, ideaId);
+  ideas.push(idea);
+  idea.saveToStorage(ideas);
 	appendCard(idea);
-  	clearFields();
-}
-
-function updateLocalStorage() {
-	ideas[0].saveToStorage(ideas);
-
 }
 
 function persistIdeas() {
@@ -73,27 +69,8 @@ function persistIdeas() {
 }
 
 
-function findId(event) {
-    var foundId = parseInt(event.target.closest('.card').id);
-    deleteMatchingIdea(foundId);
-}
-
-function deleteMatchingIdea(targetID) {
-    var updatedArray = ideas.filter( idea => {
-        return idea.id !== targetID;
-    })
-    ideas = updatedArray;
-    updateLocalStorage();
-}
-
-function appendCards() {
-  for (var i = 0; i < ideas.length ; i++) {
-    appendCard(ideas[i]);
-    }
-  }
-
 function appendCard(idea) {
-bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" onclick="findId(event)" id=${idea.id}>
+bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" " id=${idea.id}>
 						<section class="card__header">
 							<img src="images/star.svg" class="card__img card__img--star">
 							<img src="images/delete.svg"  class="card__img card__img--close" >
@@ -112,20 +89,94 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" onclick="f
 					</article>`)
 }
 
+
+function appendCards() {
+  for (var i = 0; i < ideas.length ; i++) {
+    appendCard(ideas[i]);
+    }
+  }
+
+function enableSave() {
+    if (titleInput.value === '' || bodyInput.value === ''){
+      saveButton.disabled = true;
+    } else {
+        saveButton.disabled = false;
+    }
+}
+
+
+function clearFields () {
+  if (saveButton.disabled = true) {
+    titleInput.value = "";
+    bodyInput.value = "";
+  }
+}
+
+function findId(event) {
+    var foundId = parseInt(event.target.closest('.card').id);
+    if (ideas.length > 0 && foundId) {
+      return foundId;
+    }
+}
+
+function findIndex(event) {
+    var id = findId(event);
+  for (var i = 0; i < ideas.length; i++) {
+    if (id === ideas[i].id) {
+      console.log(parseInt(i));;
+      return parseInt(i);
+    }
+  }
+}
+
+function deleteCard(event) {
+  var cardIndex = findIndex(event);
+  if (event.target.closest('.card__img--close')) {
+    event.target.closest('.card').remove();
+    ideas[cardIndex].deleteFromStorage(cardIndex);
+  }
+}
+// function findId(event) {
+//   var ideaCard = event.target.closest('.card');
+//   if (ideas.length > 0 && ideaCard) {
+//     console.log(parseInt(event.target.closest('.card').dataset.id));
+//     return parseInt(event.target.closest('.card').dataset.id);
+//   }
+// }
+
+
+
+// function deleteCard(event) {
+// 	if (event.target.classList[1] === "card__img--close") {
+// 		var card = event.target.closest(".card")
+// 		card.remove();
+// 	}
+// 	console.log('global array', ideas);
+// }
+
+
+
+function updateLocalStorage() {
+	ideas[0].saveToStorage(ideas);
+}
+
+
+
+
+// function deleteMatchingIdea(targetID) {
+//     var updatedArray = ideas.filter( idea => {
+//         return idea.id !== targetID;
+//     })
+//     ideas = updatedArray;
+//     updateLocalStorage();
+// }
+
+
+
 // function saveEdits() {
 // 	var ideaTitle = document.querySelector('.card__ideas');
 // 	var editedIdeaTitle = ideaTitle.innerHTML;
 // 	ideas.push(editedIdeaTitle);
 // 	editedIdeaTitle.saveToStorage(ideas);
 
-// }
-
-
-
-// function createIdea() {
-// 	var idea = new Idea(Date.now(), titleInput.value, bodyInput.value, 0, false);
-// 	ideas.push(idea);
-//   idea.saveToStorage(ideas);
-// 	appendCard(idea);
-//   clearFields();
 // }
