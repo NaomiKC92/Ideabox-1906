@@ -6,7 +6,13 @@ var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
 var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
+var searchBar = document.querySelector('.form__search--input')
 var ideas = [];
+var qualities = ['Swill', 'Plausible', 'Genius'];
+var cardContainer = document.querySelector('.card');
+var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+
+
 
 // Load functions and listeners
 
@@ -19,7 +25,12 @@ bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", function() {
     console.log("click!");
     createIdeaHandler();
-})
+});
+bottomSection.addEventListener('click', defineButtonSelector);
+searchBar.addEventListener('keyup', searchCards);
+
+
+
 
 
 // functions
@@ -36,8 +47,9 @@ function createIdeaHandler(event) {
   clearFields();
 }
 
+
 function mainEventHandler(event) {
-  findIndex(event);
+  findInd(event);
   deleteCard(event);
 }
 
@@ -49,18 +61,19 @@ function mainEventHandler(event) {
 
 function instantiateIdea() {
   var ideaId = Date.now()
-  var idea = new Idea(titleInput.value, bodyInput.value, ideaId);
+  var idea = new Idea(titleInput.value, bodyInput.value, ideaId, 0);
   ideas.push(idea);
   idea.saveToStorage(ideas);
 	appendCard(idea);
 }
 
+
 function persistIdeas() {
   var freshIdeas = [];
-  var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
   if (parseIdeas) {
   parseIdeas.forEach(function(idea) {
-      var freshIdea = new Idea (idea.title, idea.body, idea.id)
+      var freshIdea = new Idea (idea.title, idea.body, idea.id, idea.quality,
+        idea.star);
         freshIdeas.push(freshIdea);
      })
   };
@@ -69,7 +82,8 @@ function persistIdeas() {
 
 
 function appendCard(idea) {
-bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" " id=${idea.id}>
+bottomSection.insertAdjacentHTML("afterbegin", `<article class="card"
+            id=${idea.id}>
 						<section class="card__header">
 							<img src="images/star.svg" class="card__img card__img--star">
 							<img src="images/delete.svg"  class="card__img card__img--close" >
@@ -79,11 +93,11 @@ bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" " id=${ide
 							<p class="card__info" contenteditable="true">${idea.body}</p>
 						</section>
 						<section class="card__footer">
-							<img src="images/upvote.svg" class="card__img card__img--upvote"
-							arrow up>
-							<p class="card__quality"> Quality: Swill</p>
-							<img src="images/downvote.svg"
-							class="card__img card__img--downvote" arrow down>
+            <img src="images/upvote.svg" class="card__img card__img--upvote"
+            id="upvote">
+							<p class="card__quality"> Quality: ${qualities[idea.quality]}</p>
+              <img src="images/downvote.svg"
+							class="card__img card__img--downvote" id="downvote">
 						</section>
 					</article>`)
 }
@@ -118,18 +132,19 @@ function findId(event) {
     }
 }
 
-function findIndex(event) {
+
+function findInd(event) {
     var id = findId(event);
   for (var i = 0; i < ideas.length; i++) {
     if (id === ideas[i].id) {
-      console.log(parseInt(i));;
       return parseInt(i);
     }
   }
 }
 
+
 function deleteCard(event) {
-  var cardIndex = findIndex(event);
+  var cardIndex = findInd(event);
   if (event.target.closest('.card__img--close')) {
     event.target.closest('.card').remove();
     ideas[cardIndex].deleteFromStorage(cardIndex);
@@ -137,10 +152,47 @@ function deleteCard(event) {
 }
 
 
-function updateLocalStorage() {
-	ideas[0].saveToStorage(ideas);
+function changeQuality(event) {
+  var foundId = parseInt(event.target.closest('.card').id);
+  var arrayIndex = ideas.findIndex(function(item){
+    return item.id === foundId
+  })
+  var storedQualities = parseIdeas[arrayIndex].quality;
+
+  if (event.target.id === 'upvote' && storedQualities < 2) {
+    console.log('hi')
+    storedQualities++
+  } else if (event.target.id === 'downvote'  && storedQualities > 0){
+    storedQualities--
+  }
+  qualities[arrayIndex].updateQuality(storedQualities);
 }
 
+
+function defineButtonSelector(event) {
+  if (event.target.id === 'upvote' || 'downvote') {
+    changeQuality(event);
+  }
+}
+
+
+function searchCards() {
+  var searchArray = [];
+  if (parseIdeas) {
+  parseIdeas.forEach(function(idea) {
+      var freshIdea = new Idea (idea.title, idea.body, idea.id, idea.quality,
+        idea.star);
+        freshIdeas.push(freshIdea)
+};
+    ideas = freshIdeas;
+  }
+}
+
+
+function showResults() {
+  var resultArray = []
+
+}
 
 
 

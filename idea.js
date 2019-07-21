@@ -3,7 +3,7 @@ class Idea {
       this.title = title;
       this.body = body;
       this.id = id;
-      this.quality = "Swill";
+      this.quality = ['Swill', 'Plausible', 'Genius'];
       this.star = false;
   }
 // methods we MUST add
@@ -16,16 +16,10 @@ class Idea {
      this.saveToStorage(ideas);
    }
 
-// updateIdea() {
-//
-// }
-
-// updateQuality() {git
-//
-// }
-	// deleteFromStorage(id) {
-	// 	localStorage.getItem("ideas", JSON.parse(ideas));
-	// }
+updateQuality(quality) {
+  this.quality = quality;
+  this.saveToStorage(storedQualities);
+}
 
 
 // 	var targetedId = event.target.parentNode.id;
