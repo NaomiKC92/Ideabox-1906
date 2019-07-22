@@ -1,35 +1,28 @@
 class Idea {
-  constructor(title, body, id) {
-      this.title = title;
-      this.body = body;
-      this.id = id;
-      this.quality = "Swill";
-      this.star = false;
+  constructor(obj) {
+      this.title = obj.title;
+      this.body = obj.body;
+      this.id = obj.id || Date.now();
+      this.quality = obj.quality || ['Swill', 'Plausible', 'Genius'];
+      this.starred = obj.starred || false;
   }
-// methods we MUST add
+
+// Methods 
   saveToStorage(ideas) {
-  	localStorage.setItem("ideas", JSON.stringify(ideas));
-  }
+  	localStorage.setItem("ideasKey", JSON.stringify(ideas));
+}
 
-// updateIdea() {
-//
-// }
+  updateIdea() {
+    localStorage.setItem("ideasKey", JSON.stringify(ideas));
+}
 
-// updateQuality() {git 
-//
-// }
-	deleteFromStorage(id) {
-		localStorage.getItem("ideas", JSON.parse(ideas));
-    //
-		
-	}
+  deleteFromStorage(id) {
+		localStorage.getItem("ideasKey", JSON.parse(ideas));		
+}
 
+  updateQuality(quality) {
+    this.quality = quality;
+    this.saveToStorage(storedQualities);
+}
 
-// 	var targetedId = event.target.parentNode.id;
-// 	var output = ideas.filter(function(idea){
-// 		return idea.id !== parseInt(targetedId);
-
-// 	}
-// } 
-// maybe this.id instead of ideas???
 }
