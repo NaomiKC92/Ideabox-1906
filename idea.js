@@ -1,32 +1,28 @@
 class Idea {
-  constructor(title, body, id) {
-      this.title = title;
-      this.body = body;
-      this.id = id;
-      this.quality = ['Swill', 'Plausible', 'Genius'];
-      this.star = false;
+  constructor(obj) {
+      this.title = obj.title;
+      this.body = obj.body;
+      this.id = obj.id || Date.now();
+      this.quality = obj.quality || ['Swill', 'Plausible', 'Genius'];
+      this.starred = obj.starred || false;
   }
-// methods we MUST add
+
+// Methods 
   saveToStorage(ideas) {
-  	localStorage.setItem("ideas", JSON.stringify(ideas));
-  }
-
-  deleteFromStorage(index) {
-     ideas.splice(index, 1);
-     this.saveToStorage(ideas);
-   }
-
-updateQuality(quality) {
-  this.quality = quality;
-  this.saveToStorage(storedQualities);
+  	localStorage.setItem("ideasKey", JSON.stringify(ideas));
 }
 
+  updateIdea() {
+    localStorage.setItem("ideasKey", JSON.stringify(ideas));
+}
 
-// 	var targetedId = event.target.parentNode.id;
-// 	var output = ideas.filter(function(idea){
-// 		return idea.id !== parseInt(targetedId);
+  deleteFromStorage(id) {
+		localStorage.getItem("ideasKey", JSON.parse(ideas));		
+}
 
-// 	}
-// }
-// maybe this.id instead of ideas???
+  updateQuality(quality) {
+    this.quality = quality;
+    this.saveToStorage(storedQualities);
+}
+
 }

@@ -7,6 +7,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
+  /* background-color: #1F1F3D; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -18,27 +19,64 @@ body {
 
 nav {
   background-color: #1F1F3D;
+  display: grid;
   grid-area: nav;
 }
 
 header {
   border-bottom: 1px solid #a9aad2;
+  display: flex;
   color: #fff;
   font-size: 18px;
+  justify-content: center;
   padding: 25px 15px;
 }
+
+
+h1 {
+  height: 50%;
+  margin: 0;
+  width: 85%;
+}
+
+
+
 
 .nav__starred {
   border-bottom: 1px solid #a9aad2;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
-  padding: 40px 15px;
+  padding: 0px 15px;
 }
 
 h3 {
   color: #bfbfdd;
   font-size: 18px;
-  margin-bottom: 30px;
+  margin: 0px;
+}
+.nav__ranks {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__quality--btns {
+  color: #fff;
+  font-size: 23px;
+  height: 40px;
+  list-style: none;
+  margin: auto auto 10px -25px;
+  background-color: #1F1F3D;
+  border: none;
+};
+
+.nav__quality--btns:hover {
+  margin: 0 0 10px -40px;
+  padding: 5px;
+  background-color: #d14119;
+  border-left: 9px solid #e58e72;
+  cursor: pointer;
+  text-align: left;
 }
 
 .nav__btn {
@@ -48,6 +86,7 @@ h3 {
   font-size: 21px;
   font-weight: 700;
   height: 60px;
+  padding: 0;
   width: 99%;
 }
 
@@ -178,27 +217,29 @@ width: 100%;
 
 .main__bottom {
   background-color: #EAEAF4;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   height: 100%;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* grid-template-rows: auto; */
+  grid-gap: 40px;
+  padding: 20px 60px;
 }
 
 .card{
   border: 2px solid #6E646B;
+  background-color: white;
+  /* height: 300px; */
   display: flex;
   flex-direction: column;
-  width: 20%;
-  height: 20%;
-  margin: 15px;
-  max-height: 300px;
-  min-height: 200px;
-  min-width: 200px;
+  width: 100%;
+  box-shadow: 9px 6px 15px 5px rgba(0,0,0,0.56);
 }
 
 .card__header{
   background-color: #1F1F3D;
   width: 100%;
-  height: 4vh;
+  height: 11%;
 }
 
 .card__img--star {
@@ -209,23 +250,28 @@ width: 100%;
 }
 
 .card__body {
-  height: 22vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
   width: 100%;
 }
 
 .card__ideas {
   font-size: 14 px;
   font-weight: 600;
+  width: 85%;
 }
 
 .card__info {
   font-size: 14px;
+  width: 85%;
 
 }
 
 .card__footer {
   background-color: #5356A4;
-  height: 4vh;
+  height: 11%;
   text-align: center;
 }
 

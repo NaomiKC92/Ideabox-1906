@@ -9,7 +9,6 @@
 		href=
 		"https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
 		rel="stylesheet">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
 	</head>
 	<body>
 		<nav class="nav">
@@ -23,9 +22,9 @@
 			<section class="nav__quality">
 				<h3 class="nav__quality--label">Filter by Quality</h3>
 				<ul class="nav__ranks">
-					<li>Swill</li>
-					<li>Plausible</li>
-					<li>Genius</li>
+					<button class="nav__quality--btns" id="quality__btn--swill">Swill</li>
+					<button class="nav__quality--btns" id="quality__btn--plausible">Plausible</li>
+					<button class="nav__quality--btns" id="quality__btn--genius">Genius</li>
 				</ul>
 				<form class="nav__form">
 					<label class="nav__input--label">New Quality</label>
@@ -46,14 +45,12 @@
 						<input type="text" class="body__input">
 					</form>
 					<button class="top__input--btn">Save</button>
-					<input type="text" class="form__search--input" 
-					placeholder= "Enter Search Term Here">
+					<input type="text" class="form__search--input" id="searchbar"
+					placeholder="Enter Search Term Here">
 				</article>
 			</section>
-			<section class="main__bottom">
-			</section>
+			<section class="main__bottom"></section>
 		</main>
-
 	</body>
 	<script src="idea.js"></script>
 	<script src="main.js"></script>
