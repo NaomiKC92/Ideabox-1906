@@ -6,8 +6,8 @@ var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
 var searchBar = document.querySelector('.form__search--input');
 var ideas = [];
-var qualities = ['Swill', 'Plausible', 'Genius'];
-var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+var qualitiesArr = ['Swill', 'Plausible', 'Genius'];
+var parseIdeas = JSON.parse(localStorage.getItem('ideasKey'));
 
 // load functions
 checkLocalStorage();
@@ -22,29 +22,32 @@ bottomSection.addEventListener("focusout", updateTitle);
 bottomSection.addEventListener("focusout", updateBody);
 searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
+bottomSection.addEventListener('click', voteHandler);
 
+
+// functions
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
       saveButton.disabled = true;
     } else {
         saveButton.disabled = false;
-    };
-};
+      }
+}
 
 function clearFields () {
   if (saveButton.disabled = true) {
     titleInput.value = "";
     bodyInput.value = "";
-  };
-};
+  }
+}
 
 function createIdea() {
-	var idea = new Idea({title:titleInput.value, body:bodyInput.value});
+	var idea = new Idea({title:titleInput.value, body:bodyInput.value, quality:0});
 	ideas.push(idea);
   idea.saveToStorage(ideas);
   makeCard(idea);
   clearFields();
-};
+}
 
 function checkLocalStorage() {
   if (JSON.parse(localStorage.getItem("ideasKey")) === null) {
@@ -53,13 +56,13 @@ function checkLocalStorage() {
   ideas = JSON.parse(localStorage.getItem("ideasKey")).map( function(element) {
     return new Idea(element)
   });
-};
-};
+}
+}
 
 function findId(event) {
     var foundId = parseInt(event.target.closest('.card').id);
     return foundId;
-};
+}
 
 function deleteMatchingIdea(event) {
   var cardId = findId(event)
@@ -68,7 +71,7 @@ function deleteMatchingIdea(event) {
     });
     var idea = new Idea("title", "body")
     idea.saveToStorage(ideas);
-};
+}
 
 function deleteCard(event) {
 	if (event.target.classList[1] === "card__img--close") {
@@ -76,35 +79,36 @@ function deleteCard(event) {
     card.remove();
     deleteMatchingIdea(event)
     insertPrompt();
-  };
-};
+  }
+}
 
 function appendCards() {
   for (var i = 0; i < ideas.length ; i++) {
     makeCard(ideas[i]);
-  };
-};
+  }
+}
 
 function removePrompt() {
   var prompt = document.querySelector(".prompt__new-idea");
   if (prompt) {
     prompt.parentNode.removeChild(prompt)
-  };
-};
+  }
+}
 
 function insertPrompt() {
   if (bottomSection.innerHTML === "" || bottomSection.innerHTML === " ") {
-    bottomSection.insertAdjacentHTML("afterbegin", `<article class="prompt__new-idea">
+    bottomSection.insertAdjacentHTML("afterbegin",
+    `<article class="prompt__new-idea">
     <p>Got a great idea?! Name it, create it and click save!</p>
   </article>`)
-  };
-};
+  }
+}
 
 function getIndex(event) {
   return ideas.findIndex( function(idea) {
     return parseInt(findId(event)) === idea.id
   });
-};
+}
 
 function starIdea(event) {
   var index = getIndex(event);
@@ -112,17 +116,17 @@ function starIdea(event) {
   var starToChange = event.target;
   var starred = "images/star-active.svg"
   var notStarred = "images/star.svg"
-  ideas[index].starred === true ? starToChange.src = starred : starToChange.src = notStarred
+  ideas[index].starred === true ? starToChange.src = starred :
+  starToChange.src = notStarred
   ideas[index].saveToStorage(ideas)
-};
+}
 
 // function showStarredIdeas() {
 //   var index = ideas(getIndex(event))
 //   ideas = ideas.filter(function() {
 //     return ideas[]
-//   })
-
-// };
+//   });
+// }
 
 function updateTitle(event) {
   if (event.target.classList[0] === "card__ideas") {
@@ -130,8 +134,8 @@ function updateTitle(event) {
       var updatedTitle = event.target.innerText;
       ideas[index].title = updatedTitle;
       ideas[index].updateIdea(ideas);
-    };
-};
+  }
+}
 
 function updateBody(event) {
   if (event.target.classList[0] === "card__info") {
@@ -139,38 +143,97 @@ function updateBody(event) {
     var updatedBody = event.target.innerText;
     ideas[index].body = updatedBody;
     ideas[index].updateIdea(ideas);
-  };
-};
+  }
+}
 
 function saveOnEnter(event) {
   if (event.key === 'Enter') {
     event.target.blur();
     updateBody(event);
     updateTitle(event);
-  };
- };
-
- function changeQuality(event) {
-  var foundId = parseInt(event.target.closest('.card').id);
-  var arrayIndex = ideas.findIndex(function(item){
-    return item.id === foundId
-  })
-  var storedQualities = parseIdeas[arrayIndex].quality;
-  if (event.target.id === 'upvote' && storedQualities < 2) {
-    console.log('hi')
-    storedQualities++
-  } else if (event.target.id === 'downvote'  && storedQualities > 0){
-    storedQualities--
-  }
-  qualities[arrayIndex].updateQuality(storedQualities);
-}
-
-
-function defineButtonSelector(event) {
-  if (event.target.id === 'upvote' || 'downvote') {
-    changeQuality(event);
   }
 }
+
+// function getStoredItem(event) {
+//  var arrayIndex = getIndex(event);
+//  var storedQualities = parseIdeas[arrayIndex];
+//  console.log(storedQualities);
+// }
+function voteHandler(event) {
+  if (event.target.id === 'upvote'){
+    upvoteQuality(event);
+  }
+  else if (event.target.id === 'downvote'){
+    downvoteQuality(event);
+  }
+}
+function upvoteQuality(event) {
+  var arrayIndex = getIndex(event);
+  var idea = parseIdeas[arrayIndex];
+  if (idea.quality < 2) {
+    idea.quality++;
+    ideas.splice(arrayIndex, 1, idea);
+    localStorage.setItem("ideasKey", JSON.stringify(ideas));
+  }
+}
+
+function downvoteQuality(event) {
+  var arrayIndex = getIndex(event);
+  var idea = parseIdeas[arrayIndex];
+  if (idea.quality > 0) {
+    idea.quality--;
+    ideas.splice(arrayIndex, 1, idea);
+    localStorage.setItem("ideasKey", JSON.stringify(ideas));
+  }
+}
+
+// } else if (event.target.id === 'downvote') {
+  //   downvoteQuality(event)
+
+// function upvoteQuality(idea) {
+// console.log(idea)
+//   if (idea.quality < qualitiesArr.length - 1) {
+//     var newQuality = idea.quality + 1;
+//     idea.updateQuality(newQuality);
+//     // qualityDisplay(event);
+//     idea.saveToStorage(ideasArray);
+//   }
+// }
+
+function downvoteQuality(event) {
+  event.target.closest('.idea-card');
+  var idea = findIdea(e);
+
+  if (idea.quality > 0) {
+    var newQuality = idea.quality - 1;
+    idea.updateQuality(newQuality);
+    qualityDisplay(e)
+    idea.saveToStorage(ideasArray);
+  }
+}
+
+function qualityDisplay(e) {
+  var qualityDisplay = e.target.closest('.idea-card').querySelector('.quality-text');
+  var idea = findIdea(e);
+  var ideaQuality = qualitiesArray[idea.quality];
+
+  qualityDisplay.innerText = `Quality: ${ideaQuality}`
+}
+
+ function getStoredItem(event) {
+  var arrayIndex = getIndex(event);
+  var storedQualities = parseIdeas[arrayIndex];
+}
+//   if (event.target.id === 'upvote' && storedQualities.length < 2) {
+//     console.log('hi')};
+// //     storedQualities++
+// //   } else if (event.target.id === 'downvote'  && storedQualities > 0){
+// //     storedQualities--
+// //   }
+// //   qualities[arrayIndex].updateQuality(storedQualities);
+// }
+
+
 
 function searchCardContent() {
   var input = document.querySelector('.form__search--input').value;
@@ -182,15 +245,21 @@ function searchCardContent() {
       card[i].style.display = "none";
     } else {
       card[i].style.display = "flex";
-    };
-  };
-};
+    }
+  }
+}
 
 function makeCard(idea) {
-  bottomSection.insertAdjacentHTML("afterbegin", `<article class="card" id=${idea.id}>
+  bottomSection.insertAdjacentHTML("afterbegin", `<article class="card"
+            id=${idea.id}>
 						<section class="card__header">
-              <img src =${idea.starred ? "images/star-active.svg" : "images/star.svg"} class="card__img card__img--star" id="card__img--star" onclick="starIdea(event)">
-							<img src="images/delete.svg"  class="card__img card__img--close" onclick="deleteCard(event)" onmouseover="this.src='images/delete-active.svg'" onmouseout="this.src='images/delete.svg'">
+              <img src =${idea.starred ? "images/star-active.svg" :
+              "images/star.svg"} class="card__img card__img--star"
+              id="card__img--star" alt="star button" onclick="starIdea(event)">
+							<img src="images/delete.svg"  class="card__img card__img--close" alt="delete button"
+              onclick="deleteCard(event)"
+              onmouseover="this.src='images/delete-active.svg'"
+              onmouseout="this.src='images/delete.svg'">
 						</section>
 						<section class="card__body">
 							<h2 class="card__ideas" contenteditable="true">${idea.title}</h2>
@@ -198,11 +267,11 @@ function makeCard(idea) {
 						</section>
 						<section class="card__footer">
 							<img src="images/upvote.svg" class="card__img card__img--upvote"
-							arrow up>
-							<p class="card__quality"> Quality: ${idea.quality}</p>
+							id="upvote" alt="upvote button">
+							<p class="card__quality">Quality: ${qualitiesArr[idea.quality]}</p>
 							<img src="images/downvote.svg"
-							class="card__img card__img--downvote" arrow down>
+							class="card__img card__img--downvote" id="downvote" alt="downvote button">
 						</section>
           </article>`)
   removePrompt();
-};
+}
