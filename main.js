@@ -162,9 +162,11 @@ function saveOnEnter(event) {
 function voteHandler(event) {
   if (event.target.id === 'upvote'){
     upvoteQuality(event);
+    refreshQuality(event);
   }
   else if (event.target.id === 'downvote'){
     downvoteQuality(event);
+    refreshQuality(event);
   }
 }
 function upvoteQuality(event) {
@@ -187,40 +189,14 @@ function downvoteQuality(event) {
   }
 }
 
-// } else if (event.target.id === 'downvote') {
-  //   downvoteQuality(event)
-
-// function upvoteQuality(idea) {
-// console.log(idea)
-//   if (idea.quality < qualitiesArr.length - 1) {
-//     var newQuality = idea.quality + 1;
-//     idea.updateQuality(newQuality);
-//     // qualityDisplay(event);
-//     idea.saveToStorage(ideasArray);
-//   }
-// }
-
-function qualityDisplay(e) {
-  var qualityDisplay = e.target.closest('.idea-card').querySelector('.quality-text');
-  var idea = findIdea(e);
-  var ideaQuality = qualitiesArray[idea.quality];
-
-  qualityDisplay.innerText = `Quality: ${ideaQuality}`
-}
-
- function getStoredItem(event) {
+function refreshQuality(event) {
   var arrayIndex = getIndex(event);
-  var storedQualities = parseIdeas[arrayIndex];
+  var idea = parseIdeas[arrayIndex];
+  console.log(idea);
+  var displayQuality = event.target.closest(".card").querySelector(".card__quality");
+  console.log(displayQuality);
+  displayQuality.innerText = `Quality: ${ideaQuality}`
 }
-//   if (event.target.id === 'upvote' && storedQualities.length < 2) {
-//     console.log('hi')};
-// //     storedQualities++
-// //   } else if (event.target.id === 'downvote'  && storedQualities > 0){
-// //     storedQualities--
-// //   }
-// //   qualities[arrayIndex].updateQuality(storedQualities);
-// }
-
 
 
 function searchCardContent() {
