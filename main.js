@@ -195,7 +195,7 @@ function refreshQuality(event) {
   console.log(idea);
   var displayQuality = event.target.closest(".card").querySelector(".card__quality");
   console.log(displayQuality);
-  displayQuality.innerText = `Quality: ${ideaQuality}`
+  displayQuality.innerText = `Quality: ${qualitiesArr[idea.quality]}`
 }
 
 
