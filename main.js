@@ -200,18 +200,6 @@ function downvoteQuality(event) {
 //   }
 // }
 
-function downvoteQuality(event) {
-  event.target.closest('.idea-card');
-  var idea = findIdea(e);
-
-  if (idea.quality > 0) {
-    var newQuality = idea.quality - 1;
-    idea.updateQuality(newQuality);
-    qualityDisplay(e)
-    idea.saveToStorage(ideasArray);
-  }
-}
-
 function qualityDisplay(e) {
   var qualityDisplay = e.target.closest('.idea-card').querySelector('.quality-text');
   var idea = findIdea(e);
