@@ -8,6 +8,7 @@ var searchBar = document.querySelector('.form__search--input');
 var ideas = [];
 var qualities = ['Swill', 'Plausible', 'Genius'];
 var parseIdeas = JSON.parse(localStorage.getItem('ideas'));
+var navBar = document.querySelector('.nav__btn');
 
 // load functions
 checkLocalStorage();
@@ -22,6 +23,29 @@ bottomSection.addEventListener("focusout", updateTitle);
 bottomSection.addEventListener("focusout", updateBody);
 searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
+navBar.addEventListener("click", filterByStarred);
+navBar.addEventListener("click", returnAll);
+
+
+function filterByStarred(event) {
+    var cardStars = document.querySelectorAll('.card__header')
+    var card = document.querySelectorAll('.card')
+    for (var i = 0; i < cardStars.length; i++) {
+      if (cardStars[i].innerHTML.includes("images/star-active.svg")) {
+        card[i].style.display = "flex";
+      } else {
+        card[i].style.display = "none";
+      }
+    }
+    navBar.innerText = "Show All Ideas";
+}
+
+// function returnAll(event) {
+//   if (event.target.innerText === "Show All Ideas") {
+//     bottomSection.innerHTML = "";
+//     appendCards();
+//   }
+// }
 
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
