@@ -3,11 +3,11 @@ class Idea {
       this.title = obj.title;
       this.body = obj.body;
       this.id = obj.id || Date.now();
-      this.quality = obj.quality || ['Swill', 'Plausible', 'Genius'];
+      this.quality = obj.quality;
       this.starred = obj.starred || false;
   }
 
-// Methods 
+// Methods
   saveToStorage(ideas) {
   	localStorage.setItem("ideasKey", JSON.stringify(ideas));
 }
@@ -17,12 +17,12 @@ class Idea {
 }
 
   deleteFromStorage(id) {
-		localStorage.getItem("ideasKey", JSON.parse(ideas));		
+		localStorage.getItem("ideasKey", JSON.parse(ideas));
 }
 
-  updateQuality(quality) {
+  updateQuality() {
     this.quality = quality;
-    this.saveToStorage(storedQualities);
+    // this.saveToStorage();
 }
 
 }
