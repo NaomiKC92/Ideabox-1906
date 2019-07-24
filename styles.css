@@ -505,7 +505,7 @@ body {
     width: 100%;
     flex-direction: column;
     min-height: 410px;
-     
+
   }
 
   .top__form--container {
@@ -513,14 +513,14 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    
+
   }
-  
+
   .title__input {
     height: 30px;
     display: flex;
     flex-direction: column;
-    
+
   }
 
   .body__input {
@@ -539,9 +539,9 @@ body {
     width: 40px;
   }
 
-  .form__search--input {  
+  .form__search--input {
     height: 40px;
-    
+
   }
 
   .main__bottom {
@@ -559,4 +559,6 @@ body {
     height: 200px;
   }
 
+.card__body {
+  font-size: 12px;
 }
