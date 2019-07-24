@@ -172,10 +172,6 @@ li:hover {
 
 main {
   grid-area: main;
-  grid-template-columns: auto;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: "top-section" "top-section" "bottom-section"
-  "bottom-section" "bottom-section";
 }
 
 .main__top {
@@ -449,10 +445,6 @@ img {
     height: 100px;
   }
 
-  .title__input {
-    /* height: 100px; */
-  }
-
 }
 
 @media screen and (max-width: 600px) {
@@ -460,18 +452,22 @@ img {
     font-family: "Open Sans", sans-serif;
   }
 
-  html {
-    margin: 0;
+body {
     padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
+
   .nav__starred,
   .nav__quality,
   .nav__footer {
     visibility: hidden;
+    display: none;
   }
+
 
   .nav__hamburger--menu {
     display: block;
@@ -481,12 +477,10 @@ img {
     background-color: #d14119;
   }
 
-  /* .hidden {
-    display: none;
-  } */
 
   h1 {
     font-size: 130%;
+    margin-left: 18px;
   }
 
   nav {
@@ -496,125 +490,82 @@ img {
     width: 100%;
   }
 
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    position: inherit;
+  }
+
   .nav__header {
-    font-size: 75%;
+    padding: 5px 5px;
+    width: 93%;
+    font-size: 100%;
     text-align: center;
-    margin: -5px 1px 10px 40px;
-    height: 30px;
-    border: none;
+    margin: 0 auto;
+    border: 0px;
   }
 
   .main__top {
-    margin-top: 11%;
-    margin-left: 3%;
-    min-height: 300px;
-    width: 100%;
+    height: 15%;
     display: flex;
-    flex-direction: column;  
+    width: 100%;
+    flex-direction: column;
+    min-height: 410px;
+     
   }
 
   .top__form--container {
+    width: 90%;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    width: 93%;
-    height: 85%;
+    margin-top: 50px;
+    
   }
   
-  .title__label,
-  .body__label {
-    font-size: .9em;
-  }
-
   .title__input {
-    height: 7vh;
-    margin-bottom: 17px;
-    font-size: 1.2em;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    
   }
 
   .body__input {
-    height: 14vh;
-    margin-bottom: 22px;
-    font-size: 1.2em;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
   }
 
   .top__input--btn {
-    height: 7vh;
-    font-size: 100%;
-    font-weight: 600;
-    padding-top: 8px;
+    height: 50px;
+    font-size: 90%
   }
 
   .search__img {
-    height: 7.5vh;
-    padding: 2%;
-    width: 12%;
-    margin-top: 22px;
+    height: 40px;
+    width: 40px;
   }
 
-  .form__search--input {
-    height: 7.5vh;
-    width: 93%;
-    margin-top: 22px;
-    font-size: 13px;
+  .form__search--input {  
+    height: 40px;
+    
   }
 
   .main__bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: center;
-    width: 100%;
-  }
+    padding: 0;
+    width: 300px;
+}
 
-  .prompt__new-idea {
+.prompt__new-idea {
+  border: 0px;
+}
+
+.card {
+    margin: 10px 0px 0px 5px;
+    width: 90%;
     height: 200px;
-    align-content: flex-start;
-  }
-
-  .card {
-    height: 31vh;
-    margin-bottom: 10px;
-    margin-right: auto;
-    width: 93vw;
-  }
-
-  .card__header,
-  .card__footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-self: center;
-    width: 100%;
-    height: 7vh;
-  }
-
-  .card__ideas {
-    font-size: 1.2em;
-    font-weight: 700;
-    margin: 12px auto 5px auto;
-  }
-
-  .card__info {
-    font-size: 1.2em;
-    margin: 15px 5px;
-  }
-
-  .card__img {
-    align-content: center;
-    margin: 5px 10px 10px 5px;
-    height: 80%;
-    margin-bottom: 15px;
-  }
-
-  .card__img:hover {
-    transform: scale(1.2)
-  }
-
-  .card__quality {
-    font-size: 95%;
-    font-weight: 600;
-    align-self: center;
   }
 
 }
