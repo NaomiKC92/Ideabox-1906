@@ -1,23 +1,31 @@
-// GLOBAL VARS
+
 var main = document.querySelector(".main");
 var titleInput = document.querySelector(".title__input");
 var bodyInput = document.querySelector(".body__input");
 var saveButton = document.querySelector(".top__input--btn");
 var bottomSection = document.querySelector(".main__bottom");
 var searchBar = document.querySelector(".form__search--input");
+var main = document.querySelector('.main');
+var titleInput = document.querySelector('.title__input');
+var bodyInput = document.querySelector('.body__input');
+var saveButton = document.querySelector('.top__input--btn');
+var bottomSection = document.querySelector('.main__bottom');
+var searchBar = document.querySelector('.form__search--input');
 var ideas = [];
 var navStarBtn = document.querySelector(".nav__btn--starred");
 var qualitiesArr = ["Swill", "Plausible", "Genius"];
 var parseIdeas = JSON.parse(localStorage.getItem("ideasKey"));
 
-// ON LOAD FUNCTIONS
+
 checkLocalStorage();
 appendCards();
 insertPrompt();
 
-// EVENT LISTENERS
+
 titleInput.addEventListener("keyup", enableSave);
 bodyInput.addEventListener("keyup", enableSave);
+titleInput.addEventListener('keyup', enableSave);
+bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", createIdea);
 bottomSection.addEventListener("focusout", updateTitle);
 bottomSection.addEventListener("focusout", updateBody);
@@ -25,6 +33,8 @@ searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
 bottomSection.addEventListener("click", voteHandler);
 navStarBtn.addEventListener("click", handleStarred);
+bottomSection.addEventListener('click', voteHandler);
+navBar.addEventListener("click", filterByStarred);
 
 
 // FUNCTIONS
@@ -60,6 +70,7 @@ function handleStarred(event) {
   };
 };
 
+
 function enableSave() {
   if (titleInput.value === "" || bodyInput.value === "") {
     saveButton.disabled = true;
@@ -94,9 +105,9 @@ function checkLocalStorage() {
 };
 
 function findId(event) {
-  var foundId = parseInt(event.target.closest(".card").id);
-  return foundId;
-};
+    var foundId = parseInt(event.target.closest('.card').dataset.id);
+    return foundId;
+}
 
 function deleteMatchingIdea(event) {
   var cardId = findId(event)
@@ -227,16 +238,16 @@ function searchCardContent() {
   var card = document.querySelectorAll(".card");
   for (var i = 0; i < cardContent.length; i++) {
     if (!cardContent[i].innerText.toLowerCase().includes(input)) {
-      card[i].style.display = "none";
-    } else {
-      card[i].style.display = "flex";
-    };
-  };
-};
+      card[i].classList.add('hidden');
+    } else if (input.length === 0) {
+      card[i].classList.remove('hidden');
+    }
+  }
+}
 
 function makeCard(idea) {
   bottomSection.insertAdjacentHTML("afterbegin", `<article class="card"
-            id=${idea.id}>
+            data-id=${idea.id}>
 						<section class="card__header">
               <img src =${idea.starred ? "images/star-active.svg" :
       "images/star.svg"} class="card__img card__img--star"

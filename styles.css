@@ -1,5 +1,4 @@
 * {
-  /* border: solid red 1px; */
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
@@ -16,7 +15,6 @@ body {
    "nav main main main";
 }
 
-/* NAV */
 
 nav {
   background-color: #1F1F3D;
@@ -166,9 +164,6 @@ li:hover {
 .nav__footer {
   height: 25vh;
 }
-
-
-/* MAIN */
 
 main {
   grid-area: main;
@@ -368,6 +363,14 @@ main {
   display: inline;
   font-size: 16px;
   font-weight: 500;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .card__img--downvote {
