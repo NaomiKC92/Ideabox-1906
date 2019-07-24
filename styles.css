@@ -6,8 +6,9 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  height: 100vh;
   margin: 0;
-  /* background-color: #1F1F3D; */
+  background-color: #EAEAF4;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -19,6 +20,8 @@ body {
 
 nav {
   background-color: #1F1F3D;
+  position: fixed;
+  width: 27%;
   display: grid;
   grid-area: nav;
 }
@@ -27,9 +30,12 @@ header {
   border-bottom: 1px solid #a9aad2;
   display: flex;
   color: #fff;
-  font-size: 18px;
+  font-size: 24px;
+  min-height: 120px;
+  height: 8vh;
   justify-content: center;
   padding: 25px 15px;
+  margin-top: 1vh;
 }
 
 
@@ -57,13 +63,16 @@ h1 {
   justify-content: space-evenly;
   flex-direction: column;
   padding: 0px 15px;
+  height: 20vh;
+  min-height: 200px;
 }
 
 h3 {
   color: #bfbfdd;
-  font-size: 18px;
+  font-size: 22px;
   margin: 0px;
 }
+
 .nav__ranks {
   display: flex;
   flex-direction: column;
@@ -77,7 +86,7 @@ h3 {
   margin: auto auto 10px -25px;
   background-color: #1F1F3D;
   border: none;
-};
+}
 
 .nav__quality--btns:hover {
   margin: 0 0 10px -40px;
@@ -104,10 +113,12 @@ h3 {
 }
 
 .nav__quality {
-  border-bottom: 1px solid #a9aad2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+border-bottom: 1px solid #a9aad2;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+height: 51vh;
+min-height: 500px;
 }
 
 .nav__quality--label {
@@ -149,6 +160,10 @@ li:hover {
   width: 99%;
 }
 
+.nav__footer {
+  height: 25vh;
+}
+
 
 /* MAIN */
 
@@ -163,86 +178,105 @@ main {
 .main__top {
   background-color: #A9AAD2;
   grid-area: top-section;
-  height: 50vh;
+  height: 62vh;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .top__form--container {
-  /* height: 360px; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 40%;
-  /* align-items: center; */
+  width: 52%;
+  justify-content: space-evenly;
+  margin-top: 15px;
 }
 
 .title {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   flex-direction: column;
-  /* width: 90%;
-  height: 20%;
-  margin: 0 auto;
-  margin-bottom: 10px; */
 }
 
 .title__input {
   border: solid 2px #5356A4;
   border-radius: 3px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #1F1F3D;
   width: 100%;
+  height: 65px;
+  margin-bottom: 15px;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 
 .body__input {
   border: solid 2px #5356A4;
   border-radius: 3px;
+  font-weight: 200;
+  font-size: 20px;
+  color: #1F1F3D;
   width: 100%;
-  height: 20vh;
+  height: 19vh;
+  margin-bottom: 20px;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 
 .title__label,
 .body__label {
-  /* margin-right: 450px;
-  margin-bottom: 10px; */
   color: #1f1f3d;
   font-weight: bold;
   font-size: 18px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
 }
 
 .top__input--btn {
-border: solid 2px #5356A4;
-background-color: #5356A4;
-display: block;
-margin: auto;
-min-width: 30vw;
-width: 100%;
+  border: solid 2px #5356A4;
+  background-color: #353567;
+  display: block;
+  min-width: 30vw;
+  width: 100%;
+  height: 60px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .form__search--input {
   border: solid 2px #5356A4;
   border-radius: 3px;
   width: 100%;
+  height: 60px;
+  margin-top: 30px;
+  font-size: 16px;
 }
 
 .main__bottom {
   background-color: #EAEAF4;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   height: 100%;
-  grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  /* grid-template-rows: auto; */
-  grid-gap: 40px;
   padding: 20px 60px;
 }
 
 .card{
   border: 2px solid #6E646B;
   background-color: white;
-  /* height: 300px; */
   display: flex;
   flex-direction: column;
-  width: 100%;
+  height: 350px;
+  margin: .5vw;
+  width: 300px;
+  box-shadow: 1px 4px 15px -4px rgba(0,0,0,0.76);
+}
+
+.card:hover {
   box-shadow: 9px 6px 15px 5px rgba(0,0,0,0.56);
+  transition: 0.25s;
 }
 
 .card__header{
@@ -264,17 +298,23 @@ width: 100%;
   align-items: center;
   height: 100%;
   width: 100%;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 
 .card__ideas {
-  font-size: 14 px;
+  font-size: 18px;
   font-weight: 600;
   width: 85%;
+  overflow: scroll;
+  word-wrap: break-word;
 }
 
 .card__info {
-  font-size: 14px;
+  font-size: 16px;
   width: 85%;
+  overflow: scroll;
+  word-wrap: break-word;
 
 }
 
