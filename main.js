@@ -1,14 +1,14 @@
 // GLOBAL VARS
-var main = document.querySelector('.main');
-var titleInput = document.querySelector('.title__input');
-var bodyInput = document.querySelector('.body__input');
-var saveButton = document.querySelector('.top__input--btn');
-var bottomSection = document.querySelector('.main__bottom');
-var searchBar = document.querySelector('.form__search--input');
+var main = document.querySelector(".main");
+var titleInput = document.querySelector(".title__input");
+var bodyInput = document.querySelector(".body__input");
+var saveButton = document.querySelector(".top__input--btn");
+var bottomSection = document.querySelector(".main__bottom");
+var searchBar = document.querySelector(".form__search--input");
 var ideas = [];
-var navStarBtn = document.querySelector('.nav__btn--starred');
-var qualitiesArr = ['Swill', 'Plausible', 'Genius'];
-var parseIdeas = JSON.parse(localStorage.getItem('ideasKey'));
+var navStarBtn = document.querySelector(".nav__btn--starred");
+var qualitiesArr = ["Swill", "Plausible", "Genius"];
+var parseIdeas = JSON.parse(localStorage.getItem("ideasKey"));
 
 // ON LOAD FUNCTIONS
 checkLocalStorage();
@@ -16,20 +16,21 @@ appendCards();
 insertPrompt();
 
 // EVENT LISTENERS
-titleInput.addEventListener('keyup', enableSave);
-bodyInput.addEventListener('keyup', enableSave);
+titleInput.addEventListener("keyup", enableSave);
+bodyInput.addEventListener("keyup", enableSave);
 saveButton.addEventListener("click", createIdea);
 bottomSection.addEventListener("focusout", updateTitle);
 bottomSection.addEventListener("focusout", updateBody);
 searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
-bottomSection.addEventListener('click', voteHandler);
+bottomSection.addEventListener("click", voteHandler);
 navStarBtn.addEventListener("click", handleStarred);
 
 
+// FUNCTIONS
 function filterByStarred(event) {
-  var cardStars = document.querySelectorAll('.card__header')
-  var card = document.querySelectorAll('.card')
+  var cardStars = document.querySelectorAll(".card__header")
+  var card = document.querySelectorAll(".card")
   var unstarredCards = [];
   for (var i = 0; i < cardStars.length; i++) {
     if (!cardStars[i].innerHTML.includes("images/star-active.svg")) {
@@ -43,7 +44,7 @@ function filterByStarred(event) {
 };
 
 function returnAll() {
-  var card = document.querySelectorAll('.card')
+  var card = document.querySelectorAll(".card")
   card.forEach(function (card) {
     card.remove();
   });
@@ -59,9 +60,8 @@ function handleStarred(event) {
   };
 };
 
-// FUNCTIONS
 function enableSave() {
-  if (titleInput.value === '' || bodyInput.value === '') {
+  if (titleInput.value === "" || bodyInput.value === "") {
     saveButton.disabled = true;
   } else {
     saveButton.disabled = false;
@@ -94,7 +94,7 @@ function checkLocalStorage() {
 };
 
 function findId(event) {
-  var foundId = parseInt(event.target.closest('.card').id);
+  var foundId = parseInt(event.target.closest(".card").id);
   return foundId;
 };
 
@@ -174,7 +174,7 @@ function updateBody(event) {
 };
 
 function saveOnEnter(event) {
-  if (event.key === 'Enter') {
+  if (event.key === "Enter") {
     event.target.blur();
     updateBody(event);
     updateTitle(event);
@@ -182,11 +182,11 @@ function saveOnEnter(event) {
 };
 
 function voteHandler(event) {
-  if (event.target.id === 'upvote') {
+  if (event.target.id === "upvote") {
     upvoteQuality(event);
     refreshQuality(event);
   }
-  else if (event.target.id === 'downvote') {
+  else if (event.target.id === "downvote") {
     downvoteQuality(event);
     refreshQuality(event);
   };
@@ -221,10 +221,10 @@ function refreshQuality(event) {
 
 
 function searchCardContent() {
-  var input = document.querySelector('.form__search--input').value;
+  var input = document.querySelector(".form__search--input").value;
   input = input.toLowerCase();
-  var cardContent = document.querySelectorAll('.card__body');
-  var card = document.querySelectorAll('.card');
+  var cardContent = document.querySelectorAll(".card__body");
+  var card = document.querySelectorAll(".card");
   for (var i = 0; i < cardContent.length; i++) {
     if (!cardContent[i].innerText.toLowerCase().includes(input)) {
       card[i].style.display = "none";
@@ -243,8 +243,8 @@ function makeCard(idea) {
               id="card__img--star" alt="star button" onclick="starIdea(event)">
 							<img src="images/delete.svg"  class="card__img card__img--close" alt="delete button"
               onclick="deleteCard(event)"
-              onmouseover="this.src='images/delete-active.svg'"
-              onmouseout="this.src='images/delete.svg'">
+              onmouseover="this.src="images/delete-active.svg""
+              onmouseout="this.src="images/delete.svg"">
 						</section>
 						<section class="card__body">
 							<h2 class="card__ideas" contenteditable="true">${idea.title}</h2>

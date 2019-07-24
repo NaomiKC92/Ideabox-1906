@@ -1,11 +1,11 @@
 * {
   /* border: solid red 1px; */
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   height: 100vh;
   margin: 0;
   background-color: #EAEAF4;
@@ -457,7 +457,7 @@ img {
 
 @media screen and (max-width: 600px) {
   * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
   html {
@@ -472,6 +472,18 @@ img {
   .nav__footer {
     visibility: hidden;
   }
+
+  .nav__hamburger--menu {
+    display: block;
+    height: 45px;
+    width: 45px;
+    position: fixed;
+    background-color: #d14119;
+  }
+
+  /* .hidden {
+    display: none;
+  } */
 
   h1 {
     font-size: 130%;
