@@ -40,7 +40,16 @@ h1 {
 }
 
 
+.hidden {
+  display: none;
+  /*visibility: hidden;*/
+}
 
+.visible {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
 .nav__starred {
   border-bottom: 1px solid #a9aad2;
