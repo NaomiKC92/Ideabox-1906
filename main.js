@@ -6,6 +6,7 @@ var saveButton = document.querySelector('.top__input--btn');
 var bottomSection = document.querySelector('.main__bottom');
 var searchBar = document.querySelector('.form__search--input');
 var ideas = [];
+var navBar = document.querySelector('.nav__btn');
 var qualitiesArr = ['Swill', 'Plausible', 'Genius'];
 var parseIdeas = JSON.parse(localStorage.getItem('ideasKey'));
 
@@ -23,6 +24,48 @@ bottomSection.addEventListener("focusout", updateBody);
 searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
 bottomSection.addEventListener('click', voteHandler);
+navBar.addEventListener("click", filterByStarred);
+// navBar.addEventListener("click", returnAll);
+
+
+function filterByStarred(event) {
+    var cardStars = document.querySelectorAll('.card__header')
+    var card = document.querySelectorAll('.card')
+    var unstarredCards = [];
+    for (var i = 0; i < cardStars.length; i++) {
+      if (!cardStars[i].innerHTML.includes("images/star-active.svg")) {
+        unstarredCards.push(card[i]);
+      } 
+    }
+    unstarredCards.forEach(function(card){
+      card.remove();
+      console.log("we made it here")
+      console.log(unstarredCards)
+    });
+    navBar.innerText = "Show All Ideas";
+
+    ideas.filter(function(idea) {
+      
+    })
+}
+
+// function returnAll(event) {
+//     var card = document.querySelectorAll('.card')
+//     bottomSection.innerHTML = "";
+//     for (var i = 0; i < card.length; i++) {
+//       card[i].classList.add('visible');
+//     }
+// }
+
+// function starButton(event) {
+//   if (event.target.innerHTML === "Show Starred Ideas") {
+//     filterByStarred(event);
+//   } 
+//   if (event.target.innerHTML === "Show All Ideas") {
+//     returnAll(event);
+//   }
+// }
+
 
 
 // functions
@@ -121,13 +164,6 @@ function starIdea(event) {
   ideas[index].saveToStorage(ideas)
 }
 
-// function showStarredIdeas() {
-//   var index = ideas(getIndex(event))
-//   ideas = ideas.filter(function() {
-//     return ideas[]
-//   });
-// }
-
 function updateTitle(event) {
   if (event.target.classList[0] === "card__ideas") {
       var index = getIndex(event);
@@ -154,11 +190,6 @@ function saveOnEnter(event) {
   }
 }
 
-// function getStoredItem(event) {
-//  var arrayIndex = getIndex(event);
-//  var storedQualities = parseIdeas[arrayIndex];
-//  console.log(storedQualities);
-// }
 function voteHandler(event) {
   if (event.target.id === 'upvote'){
     upvoteQuality(event);
