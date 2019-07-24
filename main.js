@@ -1,4 +1,3 @@
-// global vars
 var main = document.querySelector('.main');
 var titleInput = document.querySelector('.title__input');
 var bodyInput = document.querySelector('.body__input');
@@ -10,12 +9,11 @@ var navBar = document.querySelector('.nav__btn');
 var qualitiesArr = ['Swill', 'Plausible', 'Genius'];
 var parseIdeas = JSON.parse(localStorage.getItem('ideasKey'));
 
-// load functions
 checkLocalStorage();
 appendCards();
 insertPrompt();
 
-// event listeners
+
 titleInput.addEventListener('keyup', enableSave);
 bodyInput.addEventListener('keyup', enableSave);
 saveButton.addEventListener("click", createIdea);
@@ -25,7 +23,7 @@ searchBar.addEventListener("keyup", searchCardContent);
 bottomSection.addEventListener("keydown", saveOnEnter);
 bottomSection.addEventListener('click', voteHandler);
 navBar.addEventListener("click", filterByStarred);
-// navBar.addEventListener("click", returnAll);
+
 
 
 function filterByStarred(event) {
@@ -39,38 +37,13 @@ function filterByStarred(event) {
     }
     unstarredCards.forEach(function(card){
       card.remove();
-      console.log("we made it here")
-      console.log(unstarredCards)
     });
     navBar.innerText = "Show All Ideas";
-
     ideas.filter(function(idea) {
       
     })
 }
 
-
-
-// function returnAll(event) {
-//     var card = document.querySelectorAll('.card')
-//     bottomSection.innerHTML = "";
-//     for (var i = 0; i < card.length; i++) {
-//       card[i].classList.add('visible');
-//     }
-// }
-
-// function starButton(event) {
-//   if (event.target.innerHTML === "Show Starred Ideas") {
-//     filterByStarred(event);
-//   } 
-//   if (event.target.innerHTML === "Show All Ideas") {
-//     returnAll(event);
-//   }
-// }
-
-
-
-// functions
 function enableSave() {
     if (titleInput.value === '' || bodyInput.value === ''){
       saveButton.disabled = true;
@@ -105,7 +78,7 @@ function checkLocalStorage() {
 }
 
 function findId(event) {
-    var foundId = parseInt(event.target.closest('.card').id);
+    var foundId = parseInt(event.target.closest('.card').dataset.id);
     return foundId;
 }
 
@@ -239,16 +212,16 @@ function searchCardContent() {
   var card = document.querySelectorAll('.card');
   for (var i = 0; i < cardContent.length; i++) {
     if (!cardContent[i].innerText.toLowerCase().includes(input)) {
-      card[i].style.display = "none";
-    } else {
-      card[i].style.display = "flex";
+      card[i].classList.add('hidden');
+    } else if (input.length === 0) {
+      card[i].classList.remove('hidden');
     }
   }
 }
 
 function makeCard(idea) {
   bottomSection.insertAdjacentHTML("afterbegin", `<article class="card"
-            id=${idea.id}>
+            data-id=${idea.id}>
 						<section class="card__header">
               <img src =${idea.starred ? "images/star-active.svg" :
               "images/star.svg"} class="card__img card__img--star"
