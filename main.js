@@ -49,6 +49,8 @@ function filterByStarred(event) {
     })
 }
 
+
+
 // function returnAll(event) {
 //     var card = document.querySelectorAll('.card')
 //     bottomSection.innerHTML = "";
