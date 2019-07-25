@@ -198,9 +198,8 @@ main {
   font-style: bold;
   color: #1F1F3D;
   width: 100%;
-  height: 65px;
+  height: 70px;
   margin-bottom: 25px;
-  overflow: scroll;
   padding: 10px;
   word-wrap: break-word;
 }
