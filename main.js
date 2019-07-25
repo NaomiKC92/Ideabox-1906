@@ -34,7 +34,6 @@ bottomSection.addEventListener("keydown", saveOnEnter);
 bottomSection.addEventListener("click", voteHandler);
 navStarBtn.addEventListener("click", handleStarred);
 bottomSection.addEventListener('click', voteHandler);
-navBar.addEventListener("click", filterByStarred);
 
 
 // FUNCTIONS
