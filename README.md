@@ -22,12 +22,13 @@ Utilizes:
 
 ## Screenshots
 #### *Desktop Layout*
+
+Desktop screenshot not indicative of actual screenview due to fixed nav.
 <details>
   <summary> Click to View </summary>
 
 ![FireShot Capture 009 - Ideabox - ](https://user-images.githubusercontent.com/30779453/61836524-d3bb0d00-ae3d-11e9-85c6-29b40e75bb07.png)
 
-![FireShot Capture 010 - Ideabox - ](https://user-images.githubusercontent.com/30779453/61836658-6cea2380-ae3e-11e9-828e-507c037540f0.png)
 
 
  </details>
@@ -36,7 +37,10 @@ Utilizes:
 <details>
   <summary> Click to View </summary>
 
+  ![FireShot Capture 010 - Ideabox - ](https://user-images.githubusercontent.com/30779453/61836658-6cea2380-ae3e-11e9-828e-507c037540f0.png)
 
+
+</details>
 
 ## Credits
 Co-developed by Turing Students, Naomi Campos, Sara Karsh and Victor Abraham
